@@ -150,8 +150,8 @@ export function useV1TradeExchangeAddress(trade: Trade | undefined): string | un
     return trade.inputAmount instanceof TokenAmount
       ? trade.inputAmount.token.address
       : trade.outputAmount instanceof TokenAmount
-      ? trade.outputAmount.token.address
-      : undefined
+        ? trade.outputAmount.token.address
+        : undefined
   }, [trade])
   return useV1ExchangeAddress(tokenAddress)
 }
