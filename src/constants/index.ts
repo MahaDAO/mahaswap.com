@@ -1,9 +1,9 @@
-import { ChainId, JSBI, Percent, Token, WETH } from '@uniswap/sdk'
+import { ChainId, JSBI, Percent, Token, WETH } from 'mahaswap-sdk'
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
 import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
 
-export const ROUTER_ADDRESS = '0xF3212FF221168713350bcAc492dddAea5F167070'
+export const ROUTER_ADDRESS = '0xdEc0b3bD49347c75fe1C44A219aB474a13e68FfD'
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 

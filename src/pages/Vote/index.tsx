@@ -15,7 +15,7 @@ import DelegateModal from '../../components/vote/DelegateModal'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import { useActiveWeb3React } from '../../hooks'
 import { UNI, ZERO_ADDRESS } from '../../constants'
-import { JSBI, TokenAmount, ChainId } from '@uniswap/sdk'
+import { JSBI, TokenAmount, ChainId } from 'mahaswap-sdk'
 import { shortenAddress, getEtherscanLink } from '../../utils'
 import Loader from '../../components/Loader'
 import FormattedCurrencyAmount from '../../components/FormattedCurrencyAmount'
@@ -67,7 +67,7 @@ const VoteCard = styled(DataCard)`
 const WrapSmall = styled(RowBetween)`
   ${({ theme }) => theme.mediaWidth.upToSmall`
     flex-wrap: wrap;
-  
+
   `};
 `
 
