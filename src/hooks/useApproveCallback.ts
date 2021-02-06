@@ -113,8 +113,10 @@ export function useApproveCallbackFromTrade(trade?: Trade, allowedSlippage = 0) 
 
 // wraps useApproveCallback in the context of a swap
 export function useApproveCallbackForMaha() {
+  const { chainId } = useActiveWeb3React()
+
   const amountToApprove = new TokenAmount(
-    MAHA,
+    chainId ? MAHA[chainId] : MAHA[1],
     JSBI.BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
   )
 

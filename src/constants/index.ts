@@ -16,9 +16,6 @@ type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
 }
 
-export const MAHA = new Token(ChainId.GÖRLI, '0x981f0d72650583d4d6961def6c186d84d9e0f2b9', 18, 'MAHA', 'MahaDAO')
-
-export const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
 export const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
 export const USDT = new Token(ChainId.MAINNET, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')
 export const COMP = new Token(ChainId.MAINNET, '0xc00e94Cb662C3520282E6f5717214004A7f26888', 18, 'COMP', 'Compound')
@@ -36,16 +33,42 @@ export const GOVERNANCE_ADDRESS = '0x5e4be8Bc9637f0EAA1A755019e06A68ce081D58F'
 export const TIMELOCK_ADDRESS = '0x1a9C8182C09F50C8318d769245beA52c32BE35BC'
 
 const UNI_ADDRESS = '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984'
-export const UNI: { [chainId in ChainId]: Token } = {
-  [ChainId.MAINNET]: new Token(ChainId.MAINNET, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.KOVAN]: new Token(ChainId.KOVAN, UNI_ADDRESS, 18, 'UNI', 'Uniswap')
+// export const UNI: { [chainId in ChainId]: Token } = {
+//   [ChainId.MAINNET]: new Token(ChainId.MAINNET, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
+//   [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
+//   [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
+//   [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
+//   [ChainId.KOVAN]: new Token(ChainId.KOVAN, UNI_ADDRESS, 18, 'UNI', 'Uniswap')
+// }
+
+export const MAHA: { [chainId in ChainId]: Token } = {
+  [ChainId.MAINNET]: new Token(ChainId.GÖRLI, '0x981f0d72650583d4d6961def6c186d84d9e0f2b9', 18, 'MAHA', 'MahaDAO'),
+  [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, '0x981f0d72650583d4d6961def6c186d84d9e0f2b9', 18, 'MAHA', 'MahaDAO'),
+  [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, '0x981f0d72650583d4d6961def6c186d84d9e0f2b9', 18, 'MAHA', 'MahaDAO'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x981f0d72650583d4d6961def6c186d84d9e0f2b9', 18, 'MAHA', 'MahaDAO'),
+  [ChainId.KOVAN]: new Token(ChainId.KOVAN, '0x981f0d72650583d4d6961def6c186d84d9e0f2b9', 18, 'MAHA', 'MahaDAO')
+}
+
+export const UNI = MAHA
+
+export const ARTH: { [chainId in ChainId]: Token } = {
+  [ChainId.MAINNET]: new Token(ChainId.GÖRLI, '0x7e53072c6ca9104c60362586d9080a22ea366e91', 18, 'ARTH', 'ARTH'),
+  [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, '0x7e53072c6ca9104c60362586d9080a22ea366e91', 18, 'ARTH', 'ARTH'),
+  [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, UNI_ADDRESS, 18, 'ARTH', 'ARTH'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, UNI_ADDRESS, 18, 'ARTH', 'ARTH'),
+  [ChainId.KOVAN]: new Token(ChainId.KOVAN, UNI_ADDRESS, 18, 'ARTH', 'ARTH')
+}
+
+export const DAI: { [chainId in ChainId]: Token } = {
+  [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai'),
+  [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, '0xfa1c36f01fea68726ec60cf1f050783aa9d1076c', 18, 'DAI', 'Dai'),
+  [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, '0xfa1c36f01fea68726ec60cf1f050783aa9d1076c', 18, 'DAI', 'Dai'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0xfa1c36f01fea68726ec60cf1f050783aa9d1076c', 18, 'DAI', 'Dai'),
+  [ChainId.KOVAN]: new Token(ChainId.KOVAN, '0xfa1c36f01fea68726ec60cf1f050783aa9d1076c', 18, 'DAI', 'Dai')
 }
 
 export const COMMON_CONTRACT_NAMES: { [address: string]: string } = {
-  [UNI_ADDRESS]: 'UNI',
+  // [UNI_ADDRESS]: 'UNI',
   [GOVERNANCE_ADDRESS]: 'Governance',
   [TIMELOCK_ADDRESS]: 'Timelock'
 }
@@ -66,7 +89,8 @@ const WETH_ONLY: ChainTokenList = {
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, COMP, MKR, WBTC]
+  [ChainId.GÖRLI]: [...WETH_ONLY[ChainId.GÖRLI], DAI[ChainId.GÖRLI], ARTH[ChainId.GÖRLI]],
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI[ChainId.MAINNET], ARTH[ChainId.MAINNET]]
 }
 
 /**
@@ -75,31 +99,25 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
  */
 export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
   [ChainId.MAINNET]: {
-    [AMPL.address]: [DAI, WETH[ChainId.MAINNET]]
+    [AMPL.address]: [DAI[ChainId.MAINNET], WETH[ChainId.MAINNET], ARTH[ChainId.MAINNET]]
   }
 }
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI[ChainId.MAINNET], ARTH[ChainId.MAINNET]]
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI[ChainId.MAINNET], ARTH[ChainId.MAINNET]]
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
-  [ChainId.MAINNET]: [
-    [
-      new Token(ChainId.MAINNET, '0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643', 8, 'cDAI', 'Compound Dai'),
-      new Token(ChainId.MAINNET, '0x39AA39c021dfbaE8faC545936693aC917d5E7563', 8, 'cUSDC', 'Compound USD Coin')
-    ],
-    [USDC, USDT],
-    [DAI, USDT]
-  ]
+  [ChainId.MAINNET]: [[DAI[ChainId.MAINNET], ARTH[ChainId.MAINNET]]],
+  [ChainId.GÖRLI]: [[DAI[ChainId.GÖRLI], ARTH[ChainId.GÖRLI]]]
 }
 
 export interface WalletInfo {
