@@ -7,12 +7,16 @@ export const ROUTER_ADDRESS = '0xdEc0b3bD49347c75fe1C44A219aB474a13e68FfD'
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
+export const CONTROLLER_ADDRESS = '0x678276a0a08d85fd2916c1005532e1a21a9ef20a'
+
 export { PRELOADED_PROPOSALS } from './proposals'
 
 // a list of tokens by chain
 type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
 }
+
+export const MAHA = new Token(ChainId.GÖRLI, '0x981f0d72650583d4d6961def6c186d84d9e0f2b9', 18, 'MAHA', 'MahaDAO')
 
 export const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
 export const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')

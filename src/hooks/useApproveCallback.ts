@@ -2,7 +2,7 @@ import { MaxUint256 } from '@ethersproject/constants'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Trade, TokenAmount, CurrencyAmount, ETHER } from 'mahaswap-sdk'
 import { useCallback, useMemo } from 'react'
-import { ROUTER_ADDRESS } from '../constants'
+import { ROUTER_ADDRESS, CONTROLLER_ADDRESS, MAHA } from '../constants'
 import { useTokenAllowance } from '../data/Allowances'
 import { getTradeVersion, useV1TradeExchangeAddress } from '../data/V1'
 import { Field } from '../state/swap/actions'
@@ -11,6 +11,7 @@ import { computeSlippageAdjustedAmounts } from '../utils/prices'
 import { calculateGasMargin } from '../utils'
 import { useTokenContract } from './useContract'
 import { useActiveWeb3React } from './index'
+import JSBI from 'jsbi'
 import { Version } from './useToggledVersion'
 
 export enum ApprovalState {
@@ -108,4 +109,14 @@ export function useApproveCallbackFromTrade(trade?: Trade, allowedSlippage = 0) 
   const tradeIsV1 = getTradeVersion(trade) === Version.v1
   const v1ExchangeAddress = useV1TradeExchangeAddress(trade)
   return useApproveCallback(amountToApprove, tradeIsV1 ? v1ExchangeAddress : ROUTER_ADDRESS)
+}
+
+// wraps useApproveCallback in the context of a swap
+export function useApproveCallbackForMaha() {
+  const amountToApprove = new TokenAmount(
+    MAHA,
+    JSBI.BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
+  )
+
+  return useApproveCallback(amountToApprove, CONTROLLER_ADDRESS)
 }

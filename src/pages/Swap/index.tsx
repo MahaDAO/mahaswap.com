@@ -25,7 +25,7 @@ import { INITIAL_ALLOWED_SLIPPAGE } from '../../constants'
 import { getTradeVersion } from '../../data/V1'
 import { useActiveWeb3React } from '../../hooks'
 import { useCurrency, useAllTokens } from '../../hooks/Tokens'
-import { ApprovalState, useApproveCallbackFromTrade } from '../../hooks/useApproveCallback'
+import { ApprovalState, useApproveCallbackForMaha, useApproveCallbackFromTrade } from '../../hooks/useApproveCallback'
 import useENSAddress from '../../hooks/useENSAddress'
 import { useSwapCallback } from '../../hooks/useSwapCallback'
 import useToggledVersion, { DEFAULT_VERSION, Version } from '../../hooks/useToggledVersion'
@@ -172,9 +172,11 @@ export default function Swap() {
 
   // check whether the user has approved the router on the input token
   const [approval, approveCallback] = useApproveCallbackFromTrade(trade, allowedSlippage)
+  const [approvalMaha, approveMahaCallback] = useApproveCallbackForMaha()
 
   // check if user has gone through approval process, used to show two step buttons, reset on token change
   const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
+  const [approvalMahaSubmitted, setApprovalMahaSubmitted] = useState<boolean>(false)
 
   // mark when a user has submitted an approval, reset onTokenSelection for input field
   useEffect(() => {
@@ -182,6 +184,12 @@ export default function Swap() {
       setApprovalSubmitted(true)
     }
   }, [approval, approvalSubmitted])
+
+  useEffect(() => {
+    if (approvalMaha === ApprovalState.PENDING) {
+      setApprovalMahaSubmitted(true)
+    }
+  }, [approvalMaha, approvalMahaSubmitted])
 
   const maxAmountInput: CurrencyAmount | undefined = maxAmountSpend(currencyBalances[Field.INPUT])
   const atMaxAmountInput = Boolean(maxAmountInput && parsedAmounts[Field.INPUT]?.equalTo(maxAmountInput))
@@ -260,6 +268,12 @@ export default function Swap() {
       approval === ApprovalState.PENDING ||
       (approvalSubmitted && approval === ApprovalState.APPROVED)) &&
     !(priceImpactSeverity > 3 && !isExpertMode)
+
+  const showMahaApproveFlow =
+    !showApproveFlow &&
+    (approvalMaha === ApprovalState.NOT_APPROVED ||
+      approvalMaha === ApprovalState.PENDING ||
+      (approvalMahaSubmitted && approvalMaha !== ApprovalState.APPROVED))
 
   const handleConfirmDismiss = useCallback(() => {
     setSwapState({ showConfirm: false, tradeToConfirm, attemptingTxn, swapErrorMessage, txHash })
@@ -418,6 +432,25 @@ export default function Swap() {
                 <TYPE.main mb="4px">Insufficient liquidity for this trade.</TYPE.main>
                 {singleHopOnly && <TYPE.main mb="4px">Try enabling multi-hop trades.</TYPE.main>}
               </GreyCard>
+            ) : showMahaApproveFlow ? (
+              <RowBetween>
+                <ButtonConfirmed
+                  onClick={approveMahaCallback}
+                  disabled={approvalMaha !== ApprovalState.NOT_APPROVED || approvalMahaSubmitted}
+                  altDisabledStyle={approvalMaha === ApprovalState.PENDING} // show solid button while waiting
+                  confirmed={approvalMaha === ApprovalState.APPROVED}
+                >
+                  {approvalMaha === ApprovalState.PENDING ? (
+                    <AutoRow gap="6px" justify="center">
+                      Approving MAHA <Loader stroke="white" />
+                    </AutoRow>
+                  ) : approvalMahaSubmitted && approvalMaha === ApprovalState.APPROVED ? (
+                    'Approved MAHA'
+                  ) : (
+                    'Approve MAHA'
+                  )}
+                </ButtonConfirmed>
+              </RowBetween>
             ) : showApproveFlow ? (
               <RowBetween>
                 <ButtonConfirmed
