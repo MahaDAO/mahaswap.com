@@ -140,7 +140,7 @@ export default function Vote() {
               </RowBetween>
               <RowBetween>
                 <TYPE.white fontSize={14}>
-                  UNI tokens represent voting shares in Uniswap governance. You can vote on each proposal yourself or
+                  MAHA tokens represent voting shares in Uniswap governance. You can vote on each proposal yourself or
                   delegate your votes to a third party.
                 </TYPE.white>
               </RowBetween>
