@@ -4,7 +4,7 @@ import { ThemeContext } from 'styled-components'
 import { Field } from '../../state/swap/actions'
 import { useUserSlippageTolerance } from '../../state/user/hooks'
 import { TYPE } from '../../theme'
-import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown } from '../../utils/prices'
+import { computeSlippageAdjustedAmounts, computeMahaIncentive, computeTradePriceBreakdown } from '../../utils/prices'
 import { AutoColumn } from '../Column'
 import QuestionHelper from '../QuestionHelper'
 import { RowBetween, RowFixed } from '../Row'
@@ -14,6 +14,7 @@ import SwapRoute from './SwapRoute'
 function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippage: number }) {
   const theme = useContext(ThemeContext)
   const { priceImpactWithoutFee, realizedLPFee } = computeTradePriceBreakdown(trade)
+  const { mahaFee } = computeMahaIncentive(trade)
   const isExactIn = trade.tradeType === TradeType.EXACT_INPUT
   const slippageAdjustedAmounts = computeSlippageAdjustedAmounts(trade, allowedSlippage)
 
@@ -45,6 +46,26 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
             <QuestionHelper text="The difference between the market price and estimated price due to trade size." />
           </RowFixed>
           <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
+        </RowBetween>
+
+        {/* <RowBetween>
+          <RowFixed>
+            <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
+              MAHA Reward
+            </TYPE.black>
+            <QuestionHelper text="How much reward in MAHA will you be getting for this trade" />
+          </RowFixed>
+          <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
+        </RowBetween> */}
+
+        <RowBetween>
+          <RowFixed>
+            <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
+              MAHA Fee
+            </TYPE.black>
+            <QuestionHelper text="How much MAHA will you be charged for making this trade" />
+          </RowFixed>
+          <FormattedPriceImpact priceImpact={mahaFee} />
         </RowBetween>
 
         <RowBetween>

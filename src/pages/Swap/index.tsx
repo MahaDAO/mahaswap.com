@@ -269,11 +269,7 @@ export default function Swap() {
       (approvalSubmitted && approval === ApprovalState.APPROVED)) &&
     !(priceImpactSeverity > 3 && !isExpertMode)
 
-  const showMahaApproveFlow =
-    !showApproveFlow &&
-    (approvalMaha === ApprovalState.NOT_APPROVED ||
-      approvalMaha === ApprovalState.PENDING ||
-      (approvalMahaSubmitted && approvalMaha !== ApprovalState.APPROVED))
+  const showMahaApproveFlow = approvalMaha !== ApprovalState.APPROVED
 
   const handleConfirmDismiss = useCallback(() => {
     setSwapState({ showConfirm: false, tradeToConfirm, attemptingTxn, swapErrorMessage, txHash })

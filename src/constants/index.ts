@@ -7,7 +7,7 @@ export const ROUTER_ADDRESS = '0xdEc0b3bD49347c75fe1C44A219aB474a13e68FfD'
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
-export const CONTROLLER_ADDRESS = '0x678276a0a08d85fd2916c1005532e1a21a9ef20a'
+export const CONTROLLER_ADDRESS = '0xD086f916533DBCD81cD52D5f072e7978Fdd87156'
 
 export { PRELOADED_PROPOSALS } from './proposals'
 
@@ -61,7 +61,7 @@ export const ARTH: { [chainId in ChainId]: Token } = {
 
 export const DAI: { [chainId in ChainId]: Token } = {
   [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai'),
-  [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, '0xfA1C36F01fEa68726eC60cF1F050783Aa9D1076C', 18, 'DAI', 'Dai'),
+  [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, '0xfa1c36f01fea68726ec60cf1f050783aa9d1076c', 18, 'DAIs', 'Dais'),
   [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, '0xfA1C36F01fEa68726eC60cF1F050783Aa9D1076C', 18, 'DAI', 'Dai'),
   [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0xfA1C36F01fEa68726eC60cF1F050783Aa9D1076C', 18, 'DAI', 'Dai'),
   [ChainId.KOVAN]: new Token(ChainId.KOVAN, '0xfA1C36F01fEa68726eC60cF1F050783Aa9D1076C', 18, 'DAI', 'Dai')
@@ -98,9 +98,9 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
  * tokens.
  */
 export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
-  [ChainId.MAINNET]: {
-    [AMPL.address]: [DAI[ChainId.MAINNET], WETH[ChainId.MAINNET], ARTH[ChainId.MAINNET]]
-  }
+  // [ChainId.MAINNET]: {
+  //   [AMPL.address]: [DAI[ChainId.MAINNET], WETH[ChainId.MAINNET], ARTH[ChainId.MAINNET]]
+  // }
 }
 
 // used for display in the default list when adding liquidity
