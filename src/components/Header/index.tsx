@@ -262,6 +262,9 @@ export default function Header() {
           <StyledExternalLink id={`stake-nav-link`} href={'https://info.mahaswap.com'}>
             Charts <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
+          <StyledExternalLink id={`stake-nav-link`} href={'https://migrate.mahaswap.com'}>
+            Migrate LP <span style={{ fontSize: '11px' }}>↗</span>
+          </StyledExternalLink>
         </HeaderLinks>
       </HeaderRow>
       <HeaderControls>
