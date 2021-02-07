@@ -117,7 +117,7 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
               <TYPE.white color="white">{totalSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
             </RowBetween>
             {uni && uni.chainId === ChainId.MAINNET ? (
-              <ExternalLink href={`https://info.arthcoin.com/token/${uni.address}`}>View MAHA Analytics</ExternalLink>
+              <ExternalLink href={`https://info.mahaswap.com/token/${uni.address}`}>View MAHA Analytics</ExternalLink>
             ) : null}
           </AutoColumn>
         </CardSection>

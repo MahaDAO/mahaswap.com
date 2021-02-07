@@ -121,7 +121,7 @@ export default function Menu() {
             <MessageCircle size={14} />
             Discord
           </MenuItem>
-          <MenuItem id="link" href="https://info.arthcoin.com/">
+          <MenuItem id="link" href="https://info.mahaswap.com/">
             <PieChart size={14} />
             Analytics
           </MenuItem>

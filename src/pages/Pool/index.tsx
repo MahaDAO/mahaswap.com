@@ -188,7 +188,7 @@ export default function Pool() {
               <>
                 <ButtonSecondary>
                   <RowBetween>
-                    <ExternalLink href={'https://info.arthcoin.com/account/' + account}>
+                    <ExternalLink href={'https://info.mahaswap.com/account/' + account}>
                       Account analytics and accrued fees
                     </ExternalLink>
                     <span> ↗</span>
