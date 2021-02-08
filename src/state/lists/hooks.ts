@@ -6,7 +6,9 @@ import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { AppState } from '../index'
 import sortByListPriority from 'utils/listSort'
-import UNSUPPORTED_TOKEN_LIST from '../../constants/tokenLists/uniswap-v2-unsupported.tokenlist.json'
+import MAINNET_LIST from '../../constants/tokenLists/mainnet.json'
+import GEORLI_LIST from '../../constants/tokenLists/goerli.json'
+import { useActiveWeb3React } from 'hooks'
 
 type TagDetails = Tags[keyof Tags]
 export interface TagInfo extends TagDetails {
@@ -142,10 +144,15 @@ export function useInactiveListUrls(): string[] {
 
 // get all the tokens from active lists, combine with local default tokens
 export function useCombinedActiveList(): TokenAddressMap {
-  const activeListUrls = useActiveListUrls()
-  const activeTokens = useCombinedTokenMapFromUrls(activeListUrls)
-  const defaultTokenMap = listToTokenMap(DEFAULT_TOKEN_LIST)
-  return combineMaps(activeTokens, defaultTokenMap)
+  const { chainId } = useActiveWeb3React()
+
+  // const activeListUrls = useActiveListUrls()
+  // const activeTokens = useCombinedTokenMapFromUrls(activeListUrls)
+
+  if (chainId === ChainId.MAINNET) return listToTokenMap(MAINNET_LIST)
+  else if (chainId === ChainId.GÖRLI) return listToTokenMap(GEORLI_LIST)
+  // const defaultTokenMap = listToTokenMap(DEFAULT_TOKEN_LIST)
+  return listToTokenMap(MAINNET_LIST)
 }
 
 // all tokens from inactive lists
@@ -162,13 +169,13 @@ export function useDefaultTokenList(): TokenAddressMap {
 // list of tokens not supported on interface, used to show warnings and prevent swaps and adds
 export function useUnsupportedTokenList(): TokenAddressMap {
   // get hard coded unsupported tokens
-  const localUnsupportedListMap = listToTokenMap(UNSUPPORTED_TOKEN_LIST)
+  // const localUnsupportedListMap = listToTokenMap(MAINNET_LIST)
 
   // get any loaded unsupported tokens
   const loadedUnsupportedListMap = useCombinedTokenMapFromUrls(UNSUPPORTED_LIST_URLS)
 
   // format into one token address map
-  return combineMaps(localUnsupportedListMap, loadedUnsupportedListMap)
+  return loadedUnsupportedListMap // combineMaps(localUnsupportedListMap, loadedUnsupportedListMap)
 }
 
 export function useIsListActive(url: string): boolean {

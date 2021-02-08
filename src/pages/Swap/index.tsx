@@ -3,7 +3,7 @@ import React, { useCallback, useContext, useEffect, useMemo, useState } from 're
 import { ArrowDown } from 'react-feather'
 import ReactGA from 'react-ga'
 import { Text } from 'rebass'
-import { ThemeContext } from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
 import AddressInputPanel from '../../components/AddressInputPanel'
 import { ButtonError, ButtonLight, ButtonPrimary, ButtonConfirmed } from '../../components/Button'
 import Card, { GreyCard } from '../../components/Card'
@@ -309,6 +309,9 @@ export default function Swap() {
         onConfirm={handleConfirmTokenWarning}
       />
       <SwapPoolTabs active={'swap'} />
+      <AboutMahaSwap>
+        MahaSwap is an innovative new DEX that with incentives for ARTH to get back to it's target price.
+      </AboutMahaSwap>
       <AppBody>
         <SwapHeader />
         <Wrapper id="swap-page">
@@ -536,11 +539,36 @@ export default function Swap() {
           </BottomGrouping>
         </Wrapper>
       </AppBody>
+
       {!swapIsUnsupported ? (
         <AdvancedSwapDetailsDropdown trade={trade} />
       ) : (
         <UnsupportedCurrencyFooter show={swapIsUnsupported} currencies={[currencies.INPUT, currencies.OUTPUT]} />
       )}
+
+      <AboutMahaSwap>
+        <Link className="white" href="">
+          Provide liqudity
+        </Link>{' '}
+        to MahaSwap and get rewards by staking on{' '}
+        <Link href="https://arthcoin.com" target="_blank">
+          arthcoin.com
+        </Link>
+      </AboutMahaSwap>
     </>
   )
 }
+
+const AboutMahaSwap = styled.p`
+  max-width: 400px;
+  padding: 15px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+`
+
+const Link = styled.a`
+  color: #fff;
+  border-bottom: 1px dotted #fff;
+  text-decoration: none;
+  font-weight: bold;
+`

@@ -1,0 +1,23 @@
+{
+  "name": "MahaSwap",
+  "logoURI": "https://i.imgur.com/HU1u66R.jpg",
+  "keywords": ["defi", "option", "opyn", "insurance"],
+  "timestamp": "2020-09-09T23:10:00Z",
+  "tokens": [
+    {
+      "chainId": 1,
+      "address": "0x0e3cc2c4fb9252d17d07c67135e48536071735d9",
+      "name": "ARTH Valuecoin",
+      "symbol": "ARTH",
+      "decimals": 18
+    },
+    {
+      "chainId": 1,
+      "name": "DAI",
+      "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+      "symbol": "DAI",
+      "decimals": 18
+    }
+  ],
+  "version": { "major": 1, "minor": 0, "patch": 0 }
+}
