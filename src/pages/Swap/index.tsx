@@ -39,7 +39,7 @@ import {
   useSwapState
 } from '../../state/swap/hooks'
 import { useExpertModeManager, useUserSlippageTolerance, useUserSingleHopOnly } from '../../state/user/hooks'
-import { LinkStyledButton, TYPE } from '../../theme'
+import { /* LinkStyledButton, */ TYPE } from '../../theme'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import AppBody from '../AppBody'
@@ -125,7 +125,7 @@ export default function Swap() {
         [Field.OUTPUT]: independentField === Field.OUTPUT ? parsedAmount : trade?.outputAmount
       }
 
-  const { onSwitchTokens, onCurrencySelection, onUserInput, onChangeRecipient } = useSwapActionHandlers()
+  const { onSwitchTokens, onCurrencySelection, onUserInput /* onChangeRecipient */ } = useSwapActionHandlers()
   const isValid = !swapInputError
   const dependentField: Field = independentField === Field.INPUT ? Field.OUTPUT : Field.INPUT
 
@@ -173,8 +173,6 @@ export default function Swap() {
   // check whether the user has approved the router on the input token
   const [approval, approveCallback] = useApproveCallbackFromTrade(trade, allowedSlippage)
   const [approvalMaha, approveMahaCallback] = useApproveCallbackForMaha()
-
-  console.log('test', approvalMaha)
 
   // check if user has gone through approval process, used to show two step buttons, reset on token change
   const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
@@ -355,11 +353,11 @@ export default function Swap() {
                     color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? theme.primary1 : theme.text2}
                   />
                 </ArrowWrapper>
-                {recipient === null && !showWrap && isExpertMode ? (
+                {/* {recipient === null && !showWrap && isExpertMode ? (
                   <LinkStyledButton id="add-recipient-button" onClick={() => onChangeRecipient('')}>
                     + Add a send (optional)
                   </LinkStyledButton>
-                ) : null}
+                ) : null} */}
               </AutoRow>
             </AutoColumn>
             <CurrencyInputPanel
