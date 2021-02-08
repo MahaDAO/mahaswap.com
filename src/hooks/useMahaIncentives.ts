@@ -15,7 +15,6 @@ const useMahaIncentives = (incentiveTokenSymbol: string, trade?: Trade | null) =
   const [mahaReward, setMahaReward] = useState('0')
 
   const contract = useArthControllerContract()
-  console.log(contract)
 
   const action = useCallback(
     async (arthAmount: CurrencyAmount, arthReserve: TokenAmount, _price: Fraction) => {
