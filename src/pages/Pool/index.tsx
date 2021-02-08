@@ -20,7 +20,7 @@ import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks
 import { Dots } from '../../components/swap/styleds'
 import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
 import { useStakingInfo } from '../../state/stake/hooks'
-import { BIG_INT_ZERO } from '../../constants'
+import { BIG_INT_ZERO, ARTH, DAI } from '../../constants'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
@@ -57,12 +57,12 @@ const ResponsiveButtonPrimary = styled(ButtonPrimary)`
   `};
 `
 
-const ResponsiveButtonSecondary = styled(ButtonSecondary)`
-  width: fit-content;
-  ${({ theme }) => theme.mediaWidth.upToSmall`
-    width: 48%;
-  `};
-`
+// const ResponsiveButtonSecondary = styled(ButtonSecondary)`
+//   width: fit-content;
+//   ${({ theme }) => theme.mediaWidth.upToSmall`
+//     width: 48%;
+//   `};
+// `
 
 const EmptyProposals = styled.div`
   border: 1px solid ${({ theme }) => theme.text4};
@@ -75,6 +75,8 @@ const EmptyProposals = styled.div`
 `
 
 export default function Pool() {
+  const { chainId } = useActiveWeb3React()
+
   const theme = useContext(ThemeContext)
   const { account } = useActiveWeb3React()
 
@@ -123,6 +125,8 @@ export default function Pool() {
     )
   })
 
+  const link = chainId ? `/add/${ARTH[chainId].address}/${DAI[chainId].address}` : ''
+
   return (
     <>
       <PageWrapper>
@@ -155,15 +159,15 @@ export default function Pool() {
                 </TYPE.mediumHeader>
               </HideSmall>
               <ButtonRow>
-                <ResponsiveButtonSecondary as={Link} padding="6px 8px" to="/create/ETH">
+                {/* <ResponsiveButtonSecondary as={Link} padding="6px 8px" to="/create/ETH">
                   Create a pair
-                </ResponsiveButtonSecondary>
+                </ResponsiveButtonSecondary> */}
                 <ResponsiveButtonPrimary
                   id="join-pool-button"
                   as={Link}
                   padding="6px 8px"
                   borderRadius="12px"
-                  to="/add/ETH"
+                  to={link}
                 >
                   <Text fontWeight={500} fontSize={16}>
                     Add Liquidity

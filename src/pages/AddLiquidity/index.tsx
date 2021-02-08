@@ -6,7 +6,6 @@ import { Plus } from 'react-feather'
 import ReactGA from 'react-ga'
 import { RouteComponentProps } from 'react-router-dom'
 import { Text } from 'rebass'
-import { ThemeContext } from 'styled-components'
 import { ButtonError, ButtonLight, ButtonPrimary } from '../../components/Button'
 import { BlueCard, LightCard } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Column'
@@ -16,6 +15,7 @@ import DoubleCurrencyLogo from '../../components/DoubleLogo'
 import { AddRemoveTabs } from '../../components/NavigationTabs'
 import { MinimalPositionCard } from '../../components/PositionCard'
 import Row, { RowBetween, RowFlat } from '../../components/Row'
+import styled, { ThemeContext } from 'styled-components'
 
 import { ROUTER_ADDRESS } from '../../constants'
 import { PairState } from '../../data/Reserves'
@@ -311,6 +311,13 @@ export default function AddLiquidity({
 
   return (
     <>
+      <AboutMahaSwap>
+        Add liquidity and then start staking your LP tokens at{' '}
+        <Link href="https://arthcoin.com" target="_blank">
+          arthcoin.com
+        </Link>
+      </AboutMahaSwap>
+
       <AppBody>
         <AddRemoveTabs creating={isCreate} adding={true} />
         <Wrapper>
@@ -480,3 +487,17 @@ export default function AddLiquidity({
     </>
   )
 }
+
+const AboutMahaSwap = styled.p`
+  max-width: 400px;
+  padding: 15px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+`
+
+const Link = styled.a`
+  color: #fff;
+  border-bottom: 1px dotted #fff;
+  text-decoration: none;
+  font-weight: bold;
+`

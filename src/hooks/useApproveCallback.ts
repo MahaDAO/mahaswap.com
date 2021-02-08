@@ -24,7 +24,8 @@ export enum ApprovalState {
 // returns a variable indicating the state of the approval and a function which approves if necessary or early returns
 export function useApproveCallback(
   amountToApprove?: CurrencyAmount,
-  spender?: string
+  spender?: string,
+  minAmount?: CurrencyAmount
 ): [ApprovalState, () => Promise<void>] {
   const { account } = useActiveWeb3React()
   const token = amountToApprove instanceof TokenAmount ? amountToApprove.token : undefined
@@ -39,12 +40,12 @@ export function useApproveCallback(
     if (!currentAllowance) return ApprovalState.UNKNOWN
 
     // amountToApprove will be defined if currentAllowance is
-    return currentAllowance.lessThan(amountToApprove)
+    return currentAllowance.lessThan(minAmount || amountToApprove)
       ? pendingApproval
         ? ApprovalState.PENDING
         : ApprovalState.NOT_APPROVED
       : ApprovalState.APPROVED
-  }, [amountToApprove, currentAllowance, pendingApproval, spender])
+  }, [amountToApprove, currentAllowance, minAmount, pendingApproval, spender])
 
   const tokenContract = useTokenContract(token?.address)
   const addTransaction = useTransactionAdder()
@@ -120,5 +121,10 @@ export function useApproveCallbackForMaha() {
     JSBI.BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
   )
 
-  return useApproveCallback(amountToApprove, CONTROLLER_ADDRESS)
+  const minAmountToApprove = new TokenAmount(
+    chainId ? MAHA[chainId] : MAHA[1],
+    JSBI.BigInt('1000000000000000000000000')
+  )
+
+  return useApproveCallback(amountToApprove, CONTROLLER_ADDRESS, minAmountToApprove)
 }
