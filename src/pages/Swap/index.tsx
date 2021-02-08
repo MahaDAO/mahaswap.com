@@ -310,7 +310,7 @@ export default function Swap() {
       />
       <SwapPoolTabs active={'swap'} />
       <AboutMahaSwap>
-        MahaSwap is an innovative new DEX that with incentives for ARTH to get back to it's target price.
+        MahaSwap is an innovative new DEX with incentives for ARTH to get back to it's target price.
       </AboutMahaSwap>
       <AppBody>
         <SwapHeader />

@@ -15,6 +15,7 @@ import ENS_PUBLIC_RESOLVER_ABI from '../constants/abis/ens-public-resolver.json'
 import ENS_ABI from '../constants/abis/ens-registrar.json'
 import { ERC20_BYTES32_ABI } from '../constants/abis/erc20'
 import ERC20_ABI from '../constants/abis/erc20.json'
+import { ARTH_INCENTIVE_CONTROLLER, ARTH_INCENTIVE_CONTROLLER_ABI } from '../constants/abis/arthController'
 import { MIGRATOR_ABI, MIGRATOR_ADDRESS } from '../constants/abis/migrator'
 import UNISOCKS_ABI from '../constants/abis/unisocks.json'
 import WETH_ABI from '../constants/abis/weth.json'
@@ -49,6 +50,10 @@ export function useV2MigratorContract(): Contract | null {
 
 export function useV1ExchangeContract(address?: string, withSignerIfPossible?: boolean): Contract | null {
   return useContract(address, V1_EXCHANGE_ABI, withSignerIfPossible)
+}
+
+export function useArthControllerContract(): Contract | null {
+  return useContract(ARTH_INCENTIVE_CONTROLLER, ARTH_INCENTIVE_CONTROLLER_ABI, false)
 }
 
 export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: boolean): Contract | null {

@@ -1,10 +1,11 @@
+import useMahaIncentives from 'hooks/useMahaIncentives'
 import { Trade, TradeType } from 'mahaswap-sdk'
 import React, { useContext } from 'react'
 import { ThemeContext } from 'styled-components'
 import { Field } from '../../state/swap/actions'
 import { useUserSlippageTolerance } from '../../state/user/hooks'
 import { TYPE } from '../../theme'
-import { computeSlippageAdjustedAmounts, computeMahaIncentive, computeTradePriceBreakdown } from '../../utils/prices'
+import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown } from '../../utils/prices'
 import { AutoColumn } from '../Column'
 import QuestionHelper from '../QuestionHelper'
 import { RowBetween, RowFixed } from '../Row'
@@ -14,7 +15,7 @@ import SwapRoute from './SwapRoute'
 function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippage: number }) {
   const theme = useContext(ThemeContext)
   const { priceImpactWithoutFee, realizedLPFee } = computeTradePriceBreakdown(trade)
-  const { mahaFee } = computeMahaIncentive(trade)
+  const { mahaFee, mahaReward, side } = useMahaIncentives('ARTH', trade)
   const isExactIn = trade.tradeType === TradeType.EXACT_INPUT
   const slippageAdjustedAmounts = computeSlippageAdjustedAmounts(trade, allowedSlippage)
 
@@ -48,24 +49,23 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
           <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
         </RowBetween>
 
-        {/* <RowBetween>
-          <RowFixed>
-            <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-              MAHA Reward
-            </TYPE.black>
-            <QuestionHelper text="How much reward in MAHA will you be getting for this trade" />
-          </RowFixed>
-          <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
-        </RowBetween> */}
-
         <RowBetween>
           <RowFixed>
             <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-              MAHA Fee
+              {side === 'selling' ? 'MAHA Fee' : 'MAHA Reward'}
             </TYPE.black>
-            <QuestionHelper text="How much MAHA will you be charged for making this trade" />
+            <QuestionHelper
+              text={
+                side === 'selling'
+                  ? 'How much MAHA will you be charged for making this trade'
+                  : 'How much MAHA will you be rewarded for making this trade'
+              }
+            />
           </RowFixed>
-          <FormattedPriceImpact priceImpact={mahaFee} />
+
+          <TYPE.black fontSize={14} color={theme.text1}>
+            {side === 'selling' ? mahaFee : mahaReward} MAHA
+          </TYPE.black>
         </RowBetween>
 
         <RowBetween>
