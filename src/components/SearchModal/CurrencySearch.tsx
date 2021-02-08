@@ -1,27 +1,27 @@
-import { Currency, ETHER, Token } from 'mahaswap-sdk'
-import React, { KeyboardEvent, RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Currency, /* ETHER, */ Token } from 'mahaswap-sdk'
+import React, { /*  KeyboardEvent, */ /* RefObject, */ useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import ReactGA from 'react-ga'
-import { useTranslation } from 'react-i18next'
+// import { useTranslation } from 'react-i18next'
 import { FixedSizeList } from 'react-window'
 import { Text } from 'rebass'
 import { useActiveWeb3React } from '../../hooks'
 import { useAllTokens, useToken, useIsUserAddedToken, useFoundOnInactiveList } from '../../hooks/Tokens'
-import { CloseIcon, TYPE, ButtonText, IconWrapper } from '../../theme'
+import { CloseIcon, TYPE /* ButtonText, IconWrapper */ } from '../../theme'
 import { isAddress } from '../../utils'
 import Column from '../Column'
-import Row, { RowBetween, RowFixed } from '../Row'
+import Row, { RowBetween /* RowFixed */ } from '../Row'
 import CommonBases from './CommonBases'
 import CurrencyList from './CurrencyList'
 import { filterTokens } from './filtering'
 import { useTokenComparator } from './sorting'
-import { PaddedColumn, SearchInput, Separator } from './styleds'
+import { PaddedColumn, /* SearchInput, */ Separator } from './styleds'
 import AutoSizer from 'react-virtualized-auto-sizer'
 import styled from 'styled-components'
 import useToggle from 'hooks/useToggle'
 import { useOnClickOutside } from 'hooks/useOnClickOutside'
 import useTheme from 'hooks/useTheme'
 import ImportRow from './ImportRow'
-import { Edit } from 'react-feather'
+// import { Edit } from 'react-feather'
 import { ButtonLight } from 'components/Button'
 
 const ContentWrapper = styled(Column)`
@@ -30,15 +30,15 @@ const ContentWrapper = styled(Column)`
   position: relative;
 `
 
-const Footer = styled.div`
-  width: 100%;
-  border-radius: 20px;
-  padding: 20px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  background-color: ${({ theme }) => theme.bg1};
-  border-top: 1px solid ${({ theme }) => theme.bg2};
-`
+// const Footer = styled.div`
+//   width: 100%;
+//   border-radius: 20px;
+//   padding: 20px;
+//   border-top-left-radius: 0;
+//   border-top-right-radius: 0;
+//   background-color: ${({ theme }) => theme.bg1};
+//   border-top: 1px solid ${({ theme }) => theme.bg2};
+// `
 
 interface CurrencySearchProps {
   isOpen: boolean
@@ -59,11 +59,11 @@ export function CurrencySearch({
   showCommonBases,
   onDismiss,
   isOpen,
-  showManageView,
+  // showManageView,
   showImportView,
   setImportToken
 }: CurrencySearchProps) {
-  const { t } = useTranslation()
+  // const { t } = useTranslation()
   const { chainId } = useActiveWeb3React()
   const theme = useTheme()
 
@@ -146,33 +146,33 @@ export function CurrencySearch({
     if (isOpen) setSearchQuery('')
   }, [isOpen])
 
-  // manage focus on modal show
-  const inputRef = useRef<HTMLInputElement>()
-  const handleInput = useCallback(event => {
-    const input = event.target.value
-    const checksummedInput = isAddress(input)
-    setSearchQuery(checksummedInput || input)
-    fixedList.current?.scrollTo(0)
-  }, [])
+  // // manage focus on modal show
+  // const inputRef = useRef<HTMLInputElement>()
+  // const handleInput = useCallback(event => {
+  //   const input = event.target.value
+  //   const checksummedInput = isAddress(input)
+  //   setSearchQuery(checksummedInput || input)
+  //   fixedList.current?.scrollTo(0)
+  // }, [])
 
-  const handleEnter = useCallback(
-    (e: KeyboardEvent<HTMLInputElement>) => {
-      if (e.key === 'Enter') {
-        const s = searchQuery.toLowerCase().trim()
-        if (s === 'eth') {
-          handleCurrencySelect(ETHER)
-        } else if (filteredSortedTokens.length > 0) {
-          if (
-            filteredSortedTokens[0].symbol?.toLowerCase() === searchQuery.trim().toLowerCase() ||
-            filteredSortedTokens.length === 1
-          ) {
-            handleCurrencySelect(filteredSortedTokens[0])
-          }
-        }
-      }
-    },
-    [filteredSortedTokens, handleCurrencySelect, searchQuery]
-  )
+  // const handleEnter = useCallback(
+  //   (e: KeyboardEvent<HTMLInputElement>) => {
+  //     if (e.key === 'Enter') {
+  //       const s = searchQuery.toLowerCase().trim()
+  //       if (s === 'eth') {
+  //         handleCurrencySelect(ETHER)
+  //       } else if (filteredSortedTokens.length > 0) {
+  //         if (
+  //           filteredSortedTokens[0].symbol?.toLowerCase() === searchQuery.trim().toLowerCase() ||
+  //           filteredSortedTokens.length === 1
+  //         ) {
+  //           handleCurrencySelect(filteredSortedTokens[0])
+  //         }
+  //       }
+  //     }
+  //   },
+  //   [filteredSortedTokens, handleCurrencySelect, searchQuery]
+  // )
 
   // menu ui
   const [open, toggle] = useToggle(false)
@@ -199,7 +199,7 @@ export function CurrencySearch({
           </Text>
           <CloseIcon onClick={onDismiss} />
         </RowBetween>
-        <Row>
+        {/* <Row>
           <SearchInput
             type="text"
             id="token-search-input"
@@ -210,7 +210,7 @@ export function CurrencySearch({
             onChange={handleInput}
             onKeyDown={handleEnter}
           />
-        </Row>
+        </Row> */}
         {showCommonBases && (
           <CommonBases chainId={chainId} onSelect={handleCurrencySelect} selectedCurrency={selectedCurrency} />
         )}
@@ -286,7 +286,7 @@ export function CurrencySearch({
             </ButtonLight>
           </Row>
         )}
-      <Footer>
+      {/* <Footer>
         <Row justify="center">
           <ButtonText onClick={showManageView} color={theme.blue1} className="list-token-manage-button">
             <RowFixed>
@@ -297,7 +297,7 @@ export function CurrencySearch({
             </RowFixed>
           </ButtonText>
         </Row>
-      </Footer>
+      </Footer> */}
     </ContentWrapper>
   )
 }
