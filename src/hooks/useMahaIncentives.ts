@@ -1,20 +1,25 @@
 import { CurrencyAmount, Fraction, TokenAmount, Trade } from 'mahaswap-sdk'
 
-import { useArthControllerContract } from 'hooks/useContract'
+import { useArthControllerContract, useTokenContract } from 'hooks/useContract'
 import { useCallback, useEffect, useState } from 'react'
 import { BigNumber } from 'ethers'
 import { getDisplayBalance } from 'utils/formatBalance'
+import { MAHA } from '../constants'
+import { useActiveWeb3React } from 'hooks'
 
 const decimals = BigNumber.from(10).pow(18)
 
 const useMahaIncentives = (incentiveTokenSymbol: string, trade?: Trade | null) => {
-  // const pair = trade?.route.pairs[0]
+  const { account, chainId } = useActiveWeb3React()
+
   const [mahaFee, setMahaFee] = useState('0')
   const [side, setSide] = useState('selling')
+  const [hasBalance, setHasBalance] = useState(true)
 
   const [mahaReward, setMahaReward] = useState('0')
 
   const contract = useArthControllerContract()
+  const mahaToken = useTokenContract(MAHA[chainId || 1].address)
 
   const action = useCallback(
     async (arthAmount: CurrencyAmount, arthReserve: TokenAmount, _price: Fraction) => {
@@ -29,8 +34,14 @@ const useMahaIncentives = (incentiveTokenSymbol: string, trade?: Trade | null) =
 
       setMahaFee(getDisplayBalance(fee, 18, 4))
       setMahaReward(getDisplayBalance(reward, 18, 4))
+
+      // MAHA.
+      if (mahaToken && side === 'selling') {
+        const bal = await mahaToken.balanceOf(account)
+        setHasBalance(bal.gt(fee))
+      } else setHasBalance(true)
     },
-    [contract]
+    [contract, mahaToken, account, side]
   )
 
   useEffect(() => {
@@ -49,12 +60,12 @@ const useMahaIncentives = (incentiveTokenSymbol: string, trade?: Trade | null) =
 
     setSide(_side)
 
-    action(_side === 'selling' ? trade.inputAmount : trade.outputAmount, liquidity, price).catch(err =>
-      console.error(err.stack)
+    action(_side === 'selling' ? trade.inputAmount : trade.outputAmount, liquidity, price).catch(e =>
+      console.error(e.stack)
     )
   }, [trade, incentiveTokenSymbol, action])
 
-  return { mahaFee, mahaReward, side }
+  return { mahaFee, mahaReward, side, hasBalance }
 }
 
 export default useMahaIncentives

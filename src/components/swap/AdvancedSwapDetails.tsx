@@ -57,7 +57,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
             <QuestionHelper
               text={
                 side === 'selling'
-                  ? 'How much MAHA will you be charged for making this trade'
+                  ? 'How much MAHA will you be charged for making this trade. You need to have this much MAHA in your wallet'
                   : 'How much MAHA will you be rewarded for making this trade'
               }
             />

@@ -48,6 +48,7 @@ import Loader from '../../components/Loader'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import UnsupportedCurrencyFooter from 'components/swap/UnsupportedCurrencyFooter'
 import { isTradeBetter } from 'utils/trades'
+import useMahaIncentives from 'hooks/useMahaIncentives'
 
 export default function Swap() {
   const loadedUrlParams = useDefaultsFromURLSearch()
@@ -177,6 +178,8 @@ export default function Swap() {
   // check if user has gone through approval process, used to show two step buttons, reset on token change
   const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
   const [approvalMahaSubmitted, setApprovalMahaSubmitted] = useState<boolean>(false)
+
+  const { hasBalance } = useMahaIncentives('ARTH', trade)
 
   // mark when a user has submitted an approval, reset onTokenSelection for input field
   useEffect(() => {
@@ -429,7 +432,6 @@ export default function Swap() {
             ) : noRoute && userHasSpecifiedInputOutput ? (
               <GreyCard style={{ textAlign: 'center' }}>
                 <TYPE.main mb="4px">Insufficient liquidity for this trade.</TYPE.main>
-                {singleHopOnly && <TYPE.main mb="4px">Try enabling multi-hop trades.</TYPE.main>}
               </GreyCard>
             ) : showMahaApproveFlow ? (
               <RowBetween>
@@ -517,7 +519,9 @@ export default function Swap() {
                 error={isValid && priceImpactSeverity > 2 && !swapCallbackError}
               >
                 <Text fontSize={20} fontWeight={500}>
-                  {swapInputError
+                  {!hasBalance
+                    ? 'Not Enough MAHA to pay fees'
+                    : swapInputError
                     ? swapInputError
                     : priceImpactSeverity > 3 && !isExpertMode
                     ? `Price Impact Too High`
