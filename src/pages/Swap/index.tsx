@@ -433,6 +433,14 @@ export default function Swap() {
               <GreyCard style={{ textAlign: 'center' }}>
                 <TYPE.main mb="4px">Insufficient liquidity for this trade.</TYPE.main>
               </GreyCard>
+            ) : true ? (
+              <RowBetween>
+                <ButtonConfirmed disabled={true}>
+                  <AutoRow gap="6px" justify="center">
+                    Trading Begins on Feb 10th, 3pm GMT
+                  </AutoRow>
+                </ButtonConfirmed>
+              </RowBetween>
             ) : showMahaApproveFlow ? (
               <RowBetween>
                 <ButtonConfirmed
