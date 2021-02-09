@@ -3,7 +3,7 @@ import { AbstractConnector } from '@web3-react/abstract-connector'
 
 import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
 
-export const ROUTER_ADDRESS = '0xdEc0b3bD49347c75fe1C44A219aB474a13e68FfD'
+export const ROUTER_ADDRESS = '0xCDcF57Dfa6eFd5862b0f8F37a611876CA4aad3f9'
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
@@ -42,17 +42,17 @@ const UNI_ADDRESS = '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984'
 // }
 
 export const MAHA: { [chainId in ChainId]: Token } = {
-  [ChainId.MAINNET]: new Token(ChainId.GÖRLI, '0x981f0d72650583d4d6961def6c186d84d9e0f2b9', 18, 'MAHA', 'MahaDAO'),
+  [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0xb4d930279552397bba2ee473229f89ec245bc365', 18, 'MAHA', 'MahaDAO'),
   [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, '0x981f0d72650583d4d6961def6c186d84d9e0f2b9', 18, 'MAHA', 'MahaDAO'),
-  [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, '0x981f0d72650583d4d6961def6c186d84d9e0f2b9', 18, 'MAHA', 'MahaDAO'),
-  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x981f0d72650583d4d6961def6c186d84d9e0f2b9', 18, 'MAHA', 'MahaDAO'),
-  [ChainId.KOVAN]: new Token(ChainId.KOVAN, '0x981f0d72650583d4d6961def6c186d84d9e0f2b9', 18, 'MAHA', 'MahaDAO')
+  [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, UNI_ADDRESS, 18, 'MAHA', 'MahaDAO'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, UNI_ADDRESS, 18, 'MAHA', 'MahaDAO'),
+  [ChainId.KOVAN]: new Token(ChainId.KOVAN, UNI_ADDRESS, 18, 'MAHA', 'MahaDAO')
 }
 
 export const UNI = MAHA
 
 export const ARTH: { [chainId in ChainId]: Token } = {
-  [ChainId.MAINNET]: new Token(ChainId.GÖRLI, '0x7e53072c6ca9104c60362586d9080a22ea366e91', 18, 'ARTH', 'ARTH'),
+  [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0x0e3cc2c4fb9252d17d07c67135e48536071735d9', 18, 'ARTH', 'ARTH'),
   [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, '0x7e53072c6ca9104c60362586d9080a22ea366e91', 18, 'ARTH', 'ARTH'),
   [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, UNI_ADDRESS, 18, 'ARTH', 'ARTH'),
   [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, UNI_ADDRESS, 18, 'ARTH', 'ARTH'),

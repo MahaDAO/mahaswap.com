@@ -10411,10 +10411,10 @@ lz-string@^1.4.4:
   resolved "https://registry.yarnpkg.com/lz-string/-/lz-string-1.4.4.tgz#c0d8eaf36059f705796e1e344811cf4c498d3a26"
   integrity sha1-wNjq82BZ9wV5bh40SBHPTEmNOiY=
 
-mahaswap-sdk@3.0.8:
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/mahaswap-sdk/-/mahaswap-sdk-3.0.8.tgz#35fcabc1f292874e6cad8e060dc50cfaab9914c4"
-  integrity sha512-LKLod2nbksyt1jchhLCRcRBXTumvOY93sksFz5zvl41uo5SngIwv+shsFBPh74g3ksdshR7CS3WlgxZGIzzD8g==
+mahaswap-sdk@3.0.10:
+  version "3.0.10"
+  resolved "https://registry.yarnpkg.com/mahaswap-sdk/-/mahaswap-sdk-3.0.10.tgz#7e8ea1d0777a70b8d3b062c260cd4244be840a09"
+  integrity sha512-Ld4YtaNZesfrdevrG/PFuLWFlKF9ye0MK/f0tFvL4LvyAWxyTsm12Cj4sR8nRVay28xaLXhLx6+gemAgJgYTYA==
   dependencies:
     "@uniswap/v2-core" "^1.0.0"
     big.js "^5.2.2"
