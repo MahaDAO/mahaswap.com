@@ -7,7 +7,7 @@ export const ROUTER_ADDRESS = '0xCDcF57Dfa6eFd5862b0f8F37a611876CA4aad3f9'
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
-export const CONTROLLER_ADDRESS = '0x3E617c60C093881ef221BCA1216266f14B60604c'
+export const CONTROLLER_ADDRESS = '0xB47C55930D705f28eBF98A6d637eddA1aB98924D'
 
 export { PRELOADED_PROPOSALS } from './proposals'
 
@@ -45,7 +45,7 @@ export const MAHA: { [chainId in ChainId]: Token } = {
   [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0xb4d930279552397bba2ee473229f89ec245bc365', 18, 'MAHA', 'MahaDAO'),
   [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, '0x981f0d72650583d4d6961def6c186d84d9e0f2b9', 18, 'MAHA', 'MahaDAO'),
   [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, UNI_ADDRESS, 18, 'MAHA', 'MahaDAO'),
-  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, UNI_ADDRESS, 18, 'MAHA', 'MahaDAO'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0xcd24efb0f7285cb923cab11a85fbdb1523f10011', 18, 'MAHA', 'MahaDAO'),
   [ChainId.KOVAN]: new Token(ChainId.KOVAN, UNI_ADDRESS, 18, 'MAHA', 'MahaDAO')
 }
 
@@ -55,7 +55,7 @@ export const ARTH: { [chainId in ChainId]: Token } = {
   [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0x0e3cc2c4fb9252d17d07c67135e48536071735d9', 18, 'ARTH', 'ARTH'),
   [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, '0x7e53072c6ca9104c60362586d9080a22ea366e91', 18, 'ARTH', 'ARTH'),
   [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, UNI_ADDRESS, 18, 'ARTH', 'ARTH'),
-  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, UNI_ADDRESS, 18, 'ARTH', 'ARTH'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x5ac2a32bfa475765558cea2a0fe0bf0207d58ca4', 18, 'ARTH', 'ARTH'),
   [ChainId.KOVAN]: new Token(ChainId.KOVAN, UNI_ADDRESS, 18, 'ARTH', 'ARTH')
 }
 
@@ -63,7 +63,7 @@ export const DAI: { [chainId in ChainId]: Token } = {
   [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai'),
   [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, '0xfa1c36f01fea68726ec60cf1f050783aa9d1076c', 18, 'DAIs', 'Dais'),
   [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, '0xfA1C36F01fEa68726eC60cF1F050783Aa9D1076C', 18, 'DAI', 'Dai'),
-  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0xfA1C36F01fEa68726eC60cF1F050783Aa9D1076C', 18, 'DAI', 'Dai'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0xcd0efae7fa77bfdda4e4997452f3deb06f290a08', 18, 'DAI', 'Dai'),
   [ChainId.KOVAN]: new Token(ChainId.KOVAN, '0xfA1C36F01fEa68726eC60cF1F050783Aa9D1076C', 18, 'DAI', 'Dai')
 }
 

@@ -8,6 +8,8 @@ import { AppState } from '../index'
 import sortByListPriority from 'utils/listSort'
 import MAINNET_LIST from '../../constants/tokenLists/mainnet.json'
 import GEORLI_LIST from '../../constants/tokenLists/goerli.json'
+import ROPSTEN_LIST from '../../constants/tokenLists/ropsten.json'
+
 import { useActiveWeb3React } from 'hooks'
 
 type TagDetails = Tags[keyof Tags]
@@ -151,6 +153,8 @@ export function useCombinedActiveList(): TokenAddressMap {
 
   if (chainId === ChainId.MAINNET) return listToTokenMap(MAINNET_LIST)
   else if (chainId === ChainId.GÖRLI) return listToTokenMap(GEORLI_LIST)
+  else if (chainId === ChainId.ROPSTEN) return listToTokenMap(ROPSTEN_LIST)
+
   // const defaultTokenMap = listToTokenMap(DEFAULT_TOKEN_LIST)
   return listToTokenMap(MAINNET_LIST)
 }

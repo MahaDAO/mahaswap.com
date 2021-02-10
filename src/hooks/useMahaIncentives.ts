@@ -29,6 +29,8 @@ const useMahaIncentives = (incentiveTokenSymbol: string, trade?: Trade | null) =
       const price = decimals.mul(_price.multiply('1000').toFixed(0)).div(1000)
       const liquidity = decimals.mul(arthReserve.multiply('1000').toFixed(0)).div(1000)
 
+      console.log('sdf', price.toString(), liquidity.toString(), volume.toString())
+
       const reward = await contract.estimateRewardToGive(volume)
       const fee = await contract.estimatePenaltyToCharge(price, liquidity, volume)
 

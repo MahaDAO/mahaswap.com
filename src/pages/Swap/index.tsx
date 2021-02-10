@@ -179,7 +179,7 @@ export default function Swap() {
   const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
   const [approvalMahaSubmitted, setApprovalMahaSubmitted] = useState<boolean>(false)
 
-  const { hasBalance } = useMahaIncentives('ARTH', trade)
+  const { hasBalance, side } = useMahaIncentives('ARTH', trade)
 
   // mark when a user has submitted an approval, reset onTokenSelection for input field
   useEffect(() => {
@@ -272,7 +272,7 @@ export default function Swap() {
       (approvalSubmitted && approval === ApprovalState.APPROVED)) &&
     !(priceImpactSeverity > 3 && !isExpertMode)
 
-  const showMahaApproveFlow = approvalMaha !== ApprovalState.APPROVED
+  const showMahaApproveFlow = approvalMaha !== ApprovalState.APPROVED && side === 'selling'
 
   const handleConfirmDismiss = useCallback(() => {
     setSwapState({ showConfirm: false, tradeToConfirm, attemptingTxn, swapErrorMessage, txHash })
@@ -431,14 +431,6 @@ export default function Swap() {
               <GreyCard style={{ textAlign: 'center' }}>
                 <TYPE.main mb="4px">Insufficient liquidity for this trade.</TYPE.main>
               </GreyCard>
-            ) : true ? (
-              <RowBetween>
-                <ButtonConfirmed disabled={true}>
-                  <AutoRow gap="6px" justify="center">
-                    Trading Begins on Feb 10th, 3pm GMT
-                  </AutoRow>
-                </ButtonConfirmed>
-              </RowBetween>
             ) : showMahaApproveFlow ? (
               <RowBetween>
                 <ButtonConfirmed
@@ -451,7 +443,7 @@ export default function Swap() {
                     <AutoRow gap="6px" justify="center">
                       Approving MAHA <Loader stroke="white" />
                     </AutoRow>
-                  ) : approvalMahaSubmitted && approvalMaha === ApprovalState.APPROVED ? (
+                  ) : approvalMaha === ApprovalState.APPROVED ? (
                     'Approved MAHA'
                   ) : (
                     'Approve MAHA'
