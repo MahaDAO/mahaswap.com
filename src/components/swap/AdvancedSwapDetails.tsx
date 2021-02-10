@@ -79,6 +79,17 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
             {realizedLPFee ? `${realizedLPFee.toSignificant(4)} ${trade.inputAmount.currency.symbol}` : '-'}
           </TYPE.black>
         </RowBetween>
+
+        <RowBetween>
+          <RowFixed>
+            <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
+              Incentives/Fees Apply when
+            </TYPE.black>
+          </RowFixed>
+          <TYPE.black fontSize={14} color={theme.text1}>
+            {'ARTH < 1.000$'}
+          </TYPE.black>
+        </RowBetween>
       </AutoColumn>
     </>
   )
