@@ -312,10 +312,10 @@ export default function AddLiquidity({
   return (
     <>
       <AboutMahaSwap>
-        Add liquidity and then start staking your LP tokens at{' '}
+        {/* Add liquidity and then start staking your LP tokens at{' '}
         <Link href="https://arthcoin.com" target="_blank">
           arthcoin.com
-        </Link>
+        </Link> */}
       </AboutMahaSwap>
 
       <AppBody>
@@ -495,9 +495,9 @@ const AboutMahaSwap = styled.p`
   color: rgba(255, 255, 255, 0.8);
 `
 
-const Link = styled.a`
-  color: #fff;
-  border-bottom: 1px dotted #fff;
-  text-decoration: none;
-  font-weight: bold;
-`
+// const Link = styled.a`
+//   color: #fff;
+//   border-bottom: 1px dotted #fff;
+//   text-decoration: none;
+//   font-weight: bold;
+// `

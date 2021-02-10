@@ -312,9 +312,7 @@ export default function Swap() {
         onConfirm={handleConfirmTokenWarning}
       />
       <SwapPoolTabs active={'swap'} />
-      <AboutMahaSwap>
-        MahaSwap is an innovative new DEX with incentives for ARTH to get back to it's target price.
-      </AboutMahaSwap>
+      <AboutMahaSwap>MahaSwap is an innovative new DEX with incentives for ARTH traders.</AboutMahaSwap>
       <AppBody>
         <SwapHeader />
         <Wrapper id="swap-page">
@@ -559,13 +557,13 @@ export default function Swap() {
       )}
 
       <AboutMahaSwap>
-        <Link className="white" href="">
+        {/* <Link className="white" href="">
           Provide liqudity
         </Link>{' '}
         to MahaSwap and get rewards by staking on{' '}
         <Link href="https://arthcoin.com" target="_blank">
           arthcoin.com
-        </Link>
+        </Link> */}
       </AboutMahaSwap>
     </>
   )
@@ -578,9 +576,9 @@ const AboutMahaSwap = styled.p`
   color: rgba(255, 255, 255, 0.8);
 `
 
-const Link = styled.a`
-  color: #fff;
-  border-bottom: 1px dotted #fff;
-  text-decoration: none;
-  font-weight: bold;
-`
+// const Link = styled.a`
+//   color: #fff;
+//   border-bottom: 1px dotted #fff;
+//   text-decoration: none;
+//   font-weight: bold;
+// `
