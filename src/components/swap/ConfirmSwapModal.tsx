@@ -77,7 +77,7 @@ export default function ConfirmSwapModal({
         allowedSlippage={allowedSlippage}
       />
     ) : null
-  }, [allowedSlippage, onConfirm, showAcceptChanges, swapErrorMessage, trade])
+  }, [allowedSlippage, mahaFee, onConfirm, showAcceptChanges, swapErrorMessage, trade])
 
   // text to show while loading
   const pendingText = `Swapping ${trade?.inputAmount?.toSignificant(6)} ${
@@ -97,7 +97,7 @@ export default function ConfirmSwapModal({
           bottomContent={modalBottom}
         />
       ),
-    [onDismiss, modalBottom, modalHeader, swapErrorMessage]
+    [onDismiss, mahaFee, modalBottom, modalHeader, swapErrorMessage]
   )
 
   return (
