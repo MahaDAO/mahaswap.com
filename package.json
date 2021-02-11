@@ -1,7 +1,7 @@
 {
   "name": "@uniswap/interface",
   "description": "Uniswap Interface",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "homepage": ".",
   "private": true,
   "devDependencies": {
