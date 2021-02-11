@@ -123,7 +123,7 @@ export default function RemoveLiquidity({
       { name: 'verifyingContract', type: 'address' }
     ]
     const domain = {
-      name: 'Uniswap V2',
+      name: 'MahaSwap LP V1',
       version: '1',
       chainId: chainId,
       verifyingContract: pair.liquidityToken.address
@@ -142,6 +142,9 @@ export default function RemoveLiquidity({
       nonce: nonce.toHexString(),
       deadline: deadline.toNumber()
     }
+
+    console.log(message)
+
     const data = JSON.stringify({
       types: {
         EIP712Domain,
@@ -277,6 +280,7 @@ export default function RemoveLiquidity({
           signatureData.r,
           signatureData.s
         ]
+        console.log('removeLiquidityWithPermit', args)
       }
     } else {
       throw new Error('Attempting to confirm without approval or a signature. Please contact support.')

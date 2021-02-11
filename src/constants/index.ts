@@ -2,7 +2,6 @@ import { ChainId, JSBI, Percent, Token, WETH } from 'mahaswap-sdk'
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
 import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
-import { getPointerEventData } from 'react-use-gesture/dist/utils'
 
 export const ROUTER_ADDRESS = '0xCDcF57Dfa6eFd5862b0f8F37a611876CA4aad3f9'
 
@@ -16,7 +15,7 @@ export { PRELOADED_PROPOSALS } from './proposals'
 type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
 }
-getPointerEventData
+
 export const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
 export const USDT = new Token(ChainId.MAINNET, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')
 export const COMP = new Token(ChainId.MAINNET, '0xc00e94Cb662C3520282E6f5717214004A7f26888', 18, 'COMP', 'Compound')
