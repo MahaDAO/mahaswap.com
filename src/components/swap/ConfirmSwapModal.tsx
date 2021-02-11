@@ -33,6 +33,7 @@ export default function ConfirmSwapModal({
   swapErrorMessage,
   isOpen,
   attemptingTxn,
+  mahaFee,
   txHash
 }: {
   isOpen: boolean
@@ -40,6 +41,7 @@ export default function ConfirmSwapModal({
   originalTrade: Trade | undefined
   attemptingTxn: boolean
   txHash: string | undefined
+  mahaFee?: string
   recipient: string | null
   allowedSlippage: number
   onAcceptChanges: () => void
@@ -68,6 +70,7 @@ export default function ConfirmSwapModal({
     return trade ? (
       <SwapModalFooter
         onConfirm={onConfirm}
+        mahaFee={mahaFee}
         trade={trade}
         disabledConfirm={showAcceptChanges}
         swapErrorMessage={swapErrorMessage}
@@ -87,8 +90,9 @@ export default function ConfirmSwapModal({
         <TransactionErrorContent onDismiss={onDismiss} message={swapErrorMessage} />
       ) : (
         <ConfirmationModalContent
-          title="Confirm Swap"
+          title={mahaFee ? 'Confirm Swap with Fees' : 'Confirm Swap'}
           onDismiss={onDismiss}
+          mahaFee={mahaFee}
           topContent={modalHeader}
           bottomContent={modalBottom}
         />

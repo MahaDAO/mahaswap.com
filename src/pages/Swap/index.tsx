@@ -179,7 +179,7 @@ export default function Swap() {
   const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
   const [approvalMahaSubmitted, setApprovalMahaSubmitted] = useState<boolean>(false)
 
-  const { hasBalance, side } = useMahaIncentives('ARTH', trade)
+  const { hasBalance, side, mahaFee } = useMahaIncentives('ARTH', trade)
 
   // mark when a user has submitted an approval, reset onTokenSelection for input field
   useEffect(() => {
@@ -323,6 +323,7 @@ export default function Swap() {
             onAcceptChanges={handleAcceptChanges}
             attemptingTxn={attemptingTxn}
             txHash={txHash}
+            mahaFee={side === 'selling' ? mahaFee : undefined}
             recipient={recipient}
             allowedSlippage={allowedSlippage}
             onConfirm={handleSwap}

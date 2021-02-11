@@ -12,11 +12,11 @@ const decimals = BigNumber.from(10).pow(18)
 const useMahaIncentives = (incentiveTokenSymbol: string, trade?: Trade | null) => {
   const { account, chainId } = useActiveWeb3React()
 
-  const [mahaFee, setMahaFee] = useState('0')
+  const [mahaFee, setMahaFee] = useState('?')
+  const [mahaReward, setMahaReward] = useState('?')
+
   const [side, setSide] = useState('selling')
   const [hasBalance, setHasBalance] = useState(true)
-
-  const [mahaReward, setMahaReward] = useState('0')
 
   const contract = useArthControllerContract()
   const mahaToken = useTokenContract(MAHA[chainId || 1].address)
@@ -28,8 +28,6 @@ const useMahaIncentives = (incentiveTokenSymbol: string, trade?: Trade | null) =
       const volume = decimals.mul(arthAmount.multiply('1000').toFixed(0)).div(1000)
       const price = decimals.mul(_price.multiply('1000').toFixed(0)).div(1000)
       const liquidity = decimals.mul(arthReserve.multiply('1000').toFixed(0)).div(1000)
-
-      console.log('sdf', price.toString(), liquidity.toString(), volume.toString())
 
       const reward = await contract.estimateRewardToGive(volume)
       const fee = await contract.estimatePenaltyToCharge(price, liquidity, volume)

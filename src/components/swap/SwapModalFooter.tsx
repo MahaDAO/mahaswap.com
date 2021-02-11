@@ -21,11 +21,13 @@ import { StyledBalanceMaxMini, SwapCallbackError } from './styleds'
 export default function SwapModalFooter({
   trade,
   onConfirm,
+  mahaFee,
   allowedSlippage,
   swapErrorMessage,
   disabledConfirm
 }: {
   trade: Trade
+  mahaFee?: string
   allowedSlippage: number
   onConfirm: () => void
   swapErrorMessage: string | undefined
@@ -117,7 +119,7 @@ export default function SwapModalFooter({
           id="confirm-swap-or-send"
         >
           <Text fontSize={20} fontWeight={500}>
-            {severity > 2 ? 'Swap Anyway' : 'Confirm Swap'}
+            {severity > 2 ? 'Swap Anyway' : mahaFee ? 'Confirm Swap w/ Fees' : 'Confirm Swap'}
           </Text>
         </ButtonError>
 

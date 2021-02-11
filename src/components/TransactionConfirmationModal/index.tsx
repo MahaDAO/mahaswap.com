@@ -5,11 +5,11 @@ import Modal from '../Modal'
 import { ExternalLink } from '../../theme'
 import { Text } from 'rebass'
 import { CloseIcon, CustomLightSpinner } from '../../theme/components'
-import { RowBetween } from '../Row'
 import { AlertTriangle, ArrowUpCircle } from 'react-feather'
 import { ButtonPrimary } from '../Button'
 import { AutoColumn, ColumnCenter } from '../Column'
 import Circle from '../../assets/images/blue-loader.svg'
+import { RowBetween } from '../Row'
 
 import { getEtherscanLink } from '../../utils'
 import { useActiveWeb3React } from '../../hooks'
@@ -107,9 +107,11 @@ export function ConfirmationModalContent({
   title,
   bottomContent,
   onDismiss,
-  topContent
+  topContent,
+  mahaFee
 }: {
   title: string
+  mahaFee?: string
   onDismiss: () => void
   topContent: () => React.ReactNode
   bottomContent: () => React.ReactNode
@@ -124,6 +126,14 @@ export function ConfirmationModalContent({
           <CloseIcon onClick={onDismiss} />
         </RowBetween>
         {topContent()}
+        <br />
+        {mahaFee && (
+          <RowBetween>
+            <Text fontWeight={500} fontSize={20} style={{ textAlign: 'center' }}>
+              You will be charged a stability fee of {mahaFee} MAHA for this trade
+            </Text>
+          </RowBetween>
+        )}
       </Section>
       <BottomSection gap="12px">{bottomContent()}</BottomSection>
     </Wrapper>
