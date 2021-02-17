@@ -143,8 +143,6 @@ export default function RemoveLiquidity({
       deadline: deadline.toNumber()
     }
 
-    console.log(message)
-
     const data = JSON.stringify({
       types: {
         EIP712Domain,
