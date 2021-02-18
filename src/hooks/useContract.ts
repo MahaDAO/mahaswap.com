@@ -53,7 +53,8 @@ export function useV1ExchangeContract(address?: string, withSignerIfPossible?: b
 }
 
 export function useArthControllerContract(): Contract | null {
-  return useContract(ARTH_INCENTIVE_CONTROLLER, ARTH_INCENTIVE_CONTROLLER_ABI, false)
+  const { chainId } = useActiveWeb3React()
+  return useContract(ARTH_INCENTIVE_CONTROLLER[chainId || 1], ARTH_INCENTIVE_CONTROLLER_ABI, false)
 }
 
 export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: boolean): Contract | null {

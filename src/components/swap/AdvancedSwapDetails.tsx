@@ -87,7 +87,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
             </TYPE.black>
           </RowFixed>
           <TYPE.black fontSize={14} color={theme.text1}>
-            {'ARTH < 1.000$'}
+            {'ARTH < 1.100$'}
           </TYPE.black>
         </RowBetween>
       </AutoColumn>

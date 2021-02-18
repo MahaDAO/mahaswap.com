@@ -117,14 +117,11 @@ export function useApproveCallbackForMaha() {
   const { chainId } = useActiveWeb3React()
 
   const amountToApprove = new TokenAmount(
-    chainId ? MAHA[chainId] : MAHA[1],
+    MAHA[chainId || 1],
     JSBI.BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
   )
 
-  const minAmountToApprove = new TokenAmount(
-    chainId ? MAHA[chainId] : MAHA[1],
-    JSBI.BigInt('1000000000000000000000000')
-  )
+  const minAmountToApprove = new TokenAmount(MAHA[chainId || 1], JSBI.BigInt('1000000000000000000000000'))
 
-  return useApproveCallback(amountToApprove, CONTROLLER_ADDRESS, minAmountToApprove)
+  return useApproveCallback(amountToApprove, CONTROLLER_ADDRESS[chainId || 1], minAmountToApprove)
 }
